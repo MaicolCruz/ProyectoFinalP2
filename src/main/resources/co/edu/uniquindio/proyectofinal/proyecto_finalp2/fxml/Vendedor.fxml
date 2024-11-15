@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller.VendedorController"
+      styleClass="vendedor-container">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <TabPane>
+        <!-- Pestaña del Muro -->
+        <Tab text="Mi Muro" closable="false">
+            <VBox spacing="10" styleClass="section-container">
+                <ListView fx:id="listViewMuro" VBox.vgrow="ALWAYS" styleClass="muro-list"/>
+
+                <HBox spacing="10" styleClass="post-section">
+                    <TextField fx:id="txtMensaje" promptText="¿Qué quieres compartir?"
+                               HBox.hgrow="ALWAYS"/>
+                    <Button text="Publicar" onAction="#handlePublicarMensaje"
+                            styleClass="post-button"/>
+                </HBox>
+            </VBox>
+        </Tab>
+
+        <!-- Pestaña de Productos -->
+        <Tab text="Mis Productos" closable="false">
+            <VBox spacing="10" styleClass="section-container">
+                <HBox spacing="10" styleClass="toolbar">
+                    <Button text="Nuevo Producto" onAction="#handleNuevoProducto"
+                            styleClass="action-button"/>
+                    <Button text="Editar" onAction="#handleEditarProducto"
+                            styleClass="edit-button"/>
+                    <Button text="Eliminar" onAction="#handleEliminarProducto"
+                            styleClass="delete-button"/>
+                    <Button text="Cambiar Estado" onAction="#handleCambiarEstado"
+                            styleClass="state-button"/>
+                </HBox>
+
+                <TableView fx:id="tableProductos" VBox.vgrow="ALWAYS"
+                           styleClass="data-table">
+                    <columns>
+                        <TableColumn fx:id="colNombreProducto" text="Nombre"/>
+                        <TableColumn fx:id="colCategoria" text="Categoría"/>
+                        <TableColumn fx:id="colPrecio" text="Precio"/>
+                        <TableColumn fx:id="colEstado" text="Estado"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Pestaña de Red de Contactos -->
+        <Tab text="Red de Contactos" closable="false">
+            <VBox spacing="10" styleClass="section-container">
+                <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS">
+                    <!-- Panel de Contactos -->
+                    <VBox spacing="10" styleClass="contacts-panel">
+                        <Label text="Mis Contactos" styleClass="section-title"/>
+                        <ListView fx:id="listViewContactos" VBox.vgrow="ALWAYS"/>
+                        <Button text="Agregar Contacto" onAction="#handleAgregarContacto"
+                                styleClass="action-button"/>
+                    </VBox>
+
+                    <!-- Panel de Productos de la Red -->
+                    <VBox spacing="10" styleClass="network-panel">
+                        <Label text="Productos de mi Red" styleClass="section-title"/>
+                        <TableView fx:id="tableProductosRed" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colRedVendedor" text="Vendedor"/>
+                                <TableColumn fx:id="colRedProducto" text="Producto"/>
+                                <TableColumn fx:id="colRedPrecio" text="Precio"/>
+                                <TableColumn fx:id="colRedEstado" text="Estado"/>
+                            </columns>
+                        </TableView>
+                        <HBox spacing="10" styleClass="interaction-buttons">
+                            <Button text="Me gusta" onAction="#handleMeGusta"
+                                    styleClass="like-button"/>
+                            <Button text="Comentar" onAction="#handleComentar"
+                                    styleClass="comment-button"/>
+                        </HBox>
+                    </VBox>
+                </SplitPane>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

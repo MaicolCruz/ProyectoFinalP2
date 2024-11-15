@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller.AdministradorController"
+      styleClass="admin-container">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <TabPane>
+        <Tab text="Gestión de Vendedores" closable="false">
+            <VBox spacing="10" styleClass="section-container">
+                <HBox spacing="10" styleClass="toolbar">
+                    <Button text="Nuevo Vendedor" onAction="#handleNuevoVendedor"
+                            styleClass="action-button"/>
+                    <Button text="Editar" onAction="#handleEditarVendedor"
+                            styleClass="edit-button"/>
+                    <Button text="Eliminar" onAction="#handleEliminarVendedor"
+                            styleClass="delete-button"/>
+                </HBox>
+
+                <TableView fx:id="tableVendedores" VBox.vgrow="ALWAYS"
+                           styleClass="data-table">
+                    <columns>
+                        <TableColumn fx:id="colCedula" text="Cédula"/>
+                        <TableColumn fx:id="colNombre" text="Nombre"/>
+                        <TableColumn fx:id="colApellidos" text="Apellidos"/>
+                        <TableColumn fx:id="colUsuario" text="Usuario"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <Tab text="Estadísticas" closable="false">
+            <VBox spacing="10" styleClass="section-container">
+                <GridPane styleClass="stats-grid" hgap="10" vgap="10">
+                    <Label text="Total Vendedores:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label fx:id="lblTotalVendedores" styleClass="stat-value"
+                           GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Total Productos:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <Label fx:id="lblTotalProductos" styleClass="stat-value"
+                           GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="Productos Vendidos:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <Label fx:id="lblProductosVendidos" styleClass="stat-value"
+                           GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                </GridPane>
+
+                <HBox spacing="10" alignment="CENTER_LEFT" styleClass="export-section">
+                    <ComboBox fx:id="comboTipoEstadistica" promptText="Seleccione tipo de reporte"/>
+                    <Button text="Generar Reporte" onAction="#handleGenerarReporte"
+                            styleClass="report-button"/>
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>
