@@ -139,7 +139,10 @@ public class VendedorCrudImpl implements IVendedorCrud {
                 LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
                 vendedorActual.getNombre(),
                 producto.getNombre());
+        notificacion +=": " +contenido;
         producto.getVendedor().getMuroMensajes().add(notificacion);
+
+        vendedorActual.agregarMensajeMuro(notificacion);
     }
 
     @Override
@@ -162,13 +165,22 @@ public class VendedorCrudImpl implements IVendedorCrud {
         meGusta.setFecha(LocalDateTime.now());
 
         producto.getMeGusta().add(meGusta);
+        Comentario  comentario = new Comentario();
+        comentario.setAutor(vendedorActual);
+        comentario.setProducto(producto);
+        comentario.setFecha(LocalDateTime.now());
 
         // Notificar al vendedor del producto
         String notificacion = String.format("[%s] A %s le gusta tu producto %s",
                 LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
                 vendedorActual.getNombre(),
                 producto.getNombre());
-        producto.getVendedor().getMuroMensajes().add(notificacion);
+
+        comentario.setContenido(notificacion);
+        vendedorActual.agregarMeGusta(producto);
+        producto.agregarComentario(comentario);
+        vendedorActual.agregarComentario(producto,notificacion);
+        vendedorActual.agregarMensajeMuro(notificacion);
     }
 
     @Override

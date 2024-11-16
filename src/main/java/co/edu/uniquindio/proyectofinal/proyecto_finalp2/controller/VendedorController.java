@@ -26,6 +26,7 @@ public class VendedorController {
     @FXML private TableColumn<Producto, String> colCategoria;
     @FXML private TableColumn<Producto, Double> colPrecio;
     @FXML private TableColumn<Producto, EstadoProducto> colEstado;
+    @FXML private TableColumn<Producto, EstadoProducto> colFecha;
     @FXML private ListView<Vendedor> listViewContactos;
     @FXML private Button btnPublicar = new Button();
     @FXML private Button btnEditarProducto = new Button();
@@ -36,6 +37,7 @@ public class VendedorController {
     @FXML private TableColumn<Producto, String> colRedNombre = new TableColumn<>();
     @FXML private TableColumn<Producto, Double> colRedPrecio;
     @FXML private TableColumn<Producto, EstadoProducto> colRedEstado;
+    @FXML private TableColumn<Producto, EstadoProducto> colRedFecha;
 
 
     private IVendedorCrud vendedorService;
@@ -65,6 +67,7 @@ public class VendedorController {
         colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
         colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaPublicacion"));
 
         // Configuración de columnas para tableProductosRed
         colRedVendedor.setCellValueFactory(cellData ->
@@ -72,7 +75,7 @@ public class VendedorController {
         colRedNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colRedPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
         colRedEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-
+        colRedFecha.setCellValueFactory(new PropertyValueFactory<>("fechaPublicacion"));
     }
 
 
@@ -144,6 +147,13 @@ public class VendedorController {
             listViewMuro.setItems(FXCollections.observableArrayList(
                     vendedorService.obtenerMuroMensajes()));
             listViewMuro.refresh();
+
+//            //Cargar Comentarios del muro
+//            listViewMuro.getItems().clear();
+//            listViewMuro.setItems(FXCollections.observableArrayList(
+//                    vendedorService.obtener()));
+//            listViewMuro.refresh();
+
         }
     }
 
@@ -298,6 +308,7 @@ public class VendedorController {
         colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
         colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
 
         // Formatear la columna de precio
         colPrecio.setCellFactory(tc -> new TableCell<Producto, Double>() {

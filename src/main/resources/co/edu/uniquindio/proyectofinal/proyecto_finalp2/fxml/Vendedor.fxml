@@ -51,6 +51,7 @@
                         <TableColumn fx:id="colCategoria" text="Categoría"/>
                         <TableColumn fx:id="colPrecio" text="Precio"/>
                         <TableColumn fx:id="colEstado" text="Estado"/>
+                        <TableColumn fx:id="colFecha" text="Fecha"/>
                     </columns>
                 </TableView>
             </VBox>
@@ -74,9 +75,10 @@
                         <TableView fx:id="tableProductosRed" VBox.vgrow="ALWAYS">
                             <columns>
                                 <TableColumn fx:id="colRedVendedor" text="Vendedor"/>
-                                <TableColumn fx:id="colRedProducto" text="Producto"/>
+                                <TableColumn fx:id="colRedNombre" text="Nombre"/>
                                 <TableColumn fx:id="colRedPrecio" text="Precio"/>
                                 <TableColumn fx:id="colRedEstado" text="Estado"/>
+                                <TableColumn fx:id="colRedFecha" text="Fecha"/>
                             </columns>
                         </TableView>
                         <HBox spacing="10" styleClass="interaction-buttons">

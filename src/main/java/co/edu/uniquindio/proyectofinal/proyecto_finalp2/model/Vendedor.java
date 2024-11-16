@@ -119,7 +119,6 @@ public class Vendedor extends Persona {
         if (producto == null) {
             return;
         }
-
         if (!this.getContactos().contains(producto.getVendedor()) &&
                 !this.equals(producto.getVendedor())) {
             throw new IllegalStateException("No puedes dar me gusta a productos de vendedores que no son tus contactos");
@@ -133,7 +132,7 @@ public class Vendedor extends Persona {
             meGusta.setVendedor(this);
             meGusta.setProducto(producto);
             meGusta.setFecha(LocalDateTime.now());
-            producto.getMeGusta().add(meGusta);
+            producto.agregarMeGusta(meGusta);
         }
     }
 
@@ -163,17 +162,13 @@ public class Vendedor extends Persona {
 
     public void agregarProducto(Producto producto) {
         if (producto != null ) {
-
             productos.add(producto);
-
         }
     }
 
     public void eliminarProducto(Producto producto) {
         if (producto != null ) {
-
             productos.remove(producto);
-
         }
     }
 }
