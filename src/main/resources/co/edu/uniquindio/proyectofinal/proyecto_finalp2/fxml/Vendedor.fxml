@@ -7,9 +7,13 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
+<?import java.net.URL?>
 <VBox spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller.VendedorController"
       styleClass="vendedor-container">
+    <stylesheets>
+        <URL value="@../css/Vendedor.css"/>
+    </stylesheets>
 
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
