@@ -1,0 +1,217 @@
+/* vendedor.css */
+.vendedor-container {
+    -fx-background-color: #f5f5f5;
+}
+
+/* Estilo de las pestañas */
+.tab-pane {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 5 0 0 0;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #E6E6FA;
+    -fx-background-radius: 5 5 0 0;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #6C63FF;
+}
+
+.tab-pane .tab .tab-label {
+    -fx-text-fill: #666666;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: white;
+}
+
+/* Contenedores de sección */
+.section-container {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+/* Muro */
+.muro-list {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 5;
+}
+
+.muro-list .list-cell {
+    -fx-padding: 10;
+    -fx-background-color: transparent;
+}
+
+.muro-list .list-cell:hover {
+    -fx-background-color: #f5f5f5;
+}
+
+/* Sección de publicación */
+.post-section {
+    -fx-padding: 10;
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 5;
+}
+
+.post-section .text-field {
+    -fx-background-color: white;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 5;
+    -fx-padding: 8 15;
+}
+
+.post-section .text-field:focused {
+    -fx-border-color: #6C63FF;
+}
+
+/* Botones */
+.post-button, .action-button {
+    -fx-background-color: #6C63FF;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.post-button:hover, .action-button:hover {
+    -fx-background-color: #5A52CC;
+}
+
+.edit-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+}
+
+.edit-button:hover {
+    -fx-background-color: #45a049;
+}
+
+.delete-button {
+    -fx-background-color: #FF3B30;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+}
+
+.delete-button:hover {
+    -fx-background-color: #ff1f1f;
+}
+
+.state-button {
+    -fx-background-color: #FFA500;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+}
+
+.state-button:hover {
+    -fx-background-color: #FF8C00;
+}
+
+/* Tablas */
+.data-table {
+    -fx-background-color: transparent;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 5;
+}
+
+.data-table .column-header-background {
+    -fx-background-color: #6C63FF;
+    -fx-background-radius: 5 5 0 0;
+}
+
+.data-table .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+
+.data-table .column-header .label {
+    -fx-text-fill: white;
+    -fx-padding: 10 5;
+}
+
+.data-table .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #E0E0E0 transparent;
+}
+
+.data-table .table-row-cell:hover {
+    -fx-background-color: #f5f5f5;
+}
+
+.data-table .table-row-cell:selected {
+    -fx-background-color: #E6E6FA;
+}
+
+/* Panel de contactos */
+.contacts-panel {
+    -fx-background-color: white;
+    -fx-padding: 10;
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-text-fill: #6C63FF;
+    -fx-padding: 0 0 10 0;
+}
+
+/* Botones de interacción */
+.like-button {
+    -fx-background-color: #E91E63;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+}
+
+.like-button:hover {
+    -fx-background-color: #D81B60;
+}
+
+.comment-button {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+}
+
+.comment-button:hover {
+    -fx-background-color: #1976D2;
+}
+
+/* SplitPane */
+.split-pane {
+    -fx-background-color: transparent;
+    -fx-box-border: transparent;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+    -fx-background-color: #E0E0E0;
+    -fx-padding: 0 1;
+}
+
+/* Panel de red */
+.network-panel {
+    -fx-background-color: white;
+    -fx-padding: 10;
+}
+
+.interaction-buttons {
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
