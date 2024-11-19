@@ -9,8 +9,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<<<<<<< HEAD
 
 <VBox prefHeight="522.0" prefWidth="639.0" spacing="10" style="-fx-background-color: #C8A9DB;" styleClass="admin-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller.AdministradorController">
+=======
+<?import java.net.URL?>
+<VBox spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller.AdministradorController"
+      styleClass="admin-container">
+>>>>>>> 56c5b0f7c793df8811ad64187fe496788e76df63
+
+    <stylesheets>
+        <URL value="@../css/Administrador.css"/>
+    </stylesheets>
 
     <padding>
         <Insets bottom="10" left="10" right="10" top="10" />

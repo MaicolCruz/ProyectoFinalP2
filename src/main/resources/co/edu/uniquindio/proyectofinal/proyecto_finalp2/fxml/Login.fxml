@@ -5,10 +5,11 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<<<<<<< HEAD
 <?import javafx.geometry.Insets?>
 
 <AnchorPane prefHeight="497.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller.LoginController">
@@ -113,3 +114,83 @@
         </ImageView>
     </children>
 </AnchorPane>
+=======
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+
+<HBox styleClass="login-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller.LoginController">
+
+    <stylesheets>
+        <URL value="@../css/Styles.css" />
+        <URL value="@../css/Login.css" />
+    </stylesheets>
+   <children>
+   
+       <!-- Panel Izquierdo -->
+       <VBox alignment="CENTER" styleClass="left-panel" HBox.hgrow="ALWAYS">
+      <children>
+              <ImageView fitHeight="150" fitWidth="150" preserveRatio="true">
+                  <image>
+                      <Image url="@./images/key.png" />
+                  </image>
+              </ImageView>
+              <Label styleClass="title-label" text="Market Place" />
+      </children>
+       </VBox>
+   
+       <!-- Panel Derecho -->
+       <VBox alignment="CENTER" spacing="20" styleClass="right-panel" HBox.hgrow="ALWAYS">
+           <padding>
+               <Insets bottom="40" left="40" right="40" top="40" />
+           </padding>
+      <children>
+      
+              <!-- Logo pequeño -->
+              <ImageView fitHeight="60" fitWidth="60" preserveRatio="true">
+                  <image>
+                      <Image url="@../images/user-icon.png" />
+                  </image>
+              </ImageView>
+      
+              <Label styleClass="login-title" text="Inicio de sesión" />
+      
+              <!-- Campos de entrada -->
+              <VBox spacing="15">
+         <children>
+                     <HBox alignment="CENTER_LEFT" spacing="10" styleClass="input-container">
+                        <children>
+                            <ImageView fitHeight="20" fitWidth="20">
+                                <image>
+                                    <Image url="@../images/user-icon-small.png" />
+                                </image>
+                            </ImageView>
+                            <TextField fx:id="txtUsuario" promptText="User Name" styleClass="login-textfield" />
+                        </children>
+                     </HBox>
+         
+                     <HBox alignment="CENTER_LEFT" spacing="10" styleClass="input-container">
+            <children>
+                            <ImageView fitHeight="20" fitWidth="20">
+                                <image>
+                                    <Image url="@../images/password-icon.png" />
+                                </image>
+                            </ImageView>
+                            <PasswordField fx:id="txtContrasena" promptText="Password" styleClass="login-textfield" />
+            </children>
+                     </HBox>
+         </children>
+              </VBox>
+      
+              <!-- Botón de login -->
+              <Button fx:id="btnLogin" onAction="#handleLogin" styleClass="login-button" text="Login" />
+      
+              <!-- Label de error -->
+              <Label fx:id="lblError" managed="false" styleClass="error-label" visible="false" />
+      </children>
+       </VBox>
+   </children>
+
+</HBox>
+>>>>>>> 56c5b0f7c793df8811ad64187fe496788e76df63

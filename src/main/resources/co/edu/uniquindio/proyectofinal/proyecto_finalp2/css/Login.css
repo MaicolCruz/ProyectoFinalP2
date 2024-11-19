@@ -1,0 +1,113 @@
+/* login.css */
+
+.login-container {
+    -fx-background-color: white;
+    -fx-min-width: 800px;
+    -fx-min-height: 500px;
+}
+
+.left-panel {
+    -fx-background-color: #E6E6FA;
+    -fx-alignment: center;
+    -fx-padding: 20;
+}
+
+.right-panel {
+    -fx-background-color: white;
+    -fx-padding: 40;
+}
+
+.title-label {
+    -fx-font-size: 28px;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #6C63FF;
+    -fx-padding: 20 0 0 0;
+}
+
+.login-title {
+    -fx-font-size: 24px;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #333333;
+}
+
+.login-textfield {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #E0E0E0;
+    -fx-padding: 5 0;
+    -fx-font-size: 14px;
+    -fx-pref-width: 250px;
+}
+
+.login-textfield:focused {
+    -fx-border-color: #6C63FF;
+}
+
+.input-container {
+    -fx-padding: 5;
+}
+
+.login-button {
+    -fx-background-color: #6C63FF;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #5A52CC;
+}
+
+.login-button:pressed {
+    -fx-background-color: #4A43AA;
+}
+
+.login-button:disabled {
+    -fx-background-color: #CCCCCC;
+    -fx-opacity: 0.7;
+}
+
+.forgot-password {
+    -fx-text-fill: #6C63FF;
+    -fx-font-size: 12px;
+    -fx-border-width: 0;
+}
+
+.forgot-password:hover {
+    -fx-underline: true;
+}
+
+.error-label {
+    -fx-text-fill: #FF3B30;
+    -fx-font-size: 12px;
+    -fx-padding: 10 0 0 0;
+}
+
+/* Estilos para los iconos */
+.icon-container {
+    -fx-alignment: center;
+}
+
+.login-icon {
+    -fx-opacity: 0.6;
+}
+
+.login-icon:hover {
+    -fx-opacity: 1;
+}
+
+/* Animaciones */
+.login-container {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.login-textfield {
+    -fx-transition: border-color 0.3s;
+}
+
+.login-button {
+    -fx-transition: background-color 0.2s;
+}

@@ -11,7 +11,7 @@ public class MarketPlaceApplication extends Application {
     @Override
     public void init() throws Exception {
         super.init();
-        // Inicializar los datos al inicio de la aplicación
+        // Inicializar los datos
         DataUtil.getInstance();
     }
 
