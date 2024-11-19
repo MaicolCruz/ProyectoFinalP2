@@ -368,18 +368,45 @@ public class VendedorController {
     private Dialog<EstadoProducto> crearDialogoCambioEstado(EstadoProducto estadoActual) {
         Dialog<EstadoProducto> dialog = new Dialog<>();
         dialog.setTitle("Cambiar Estado del Producto");
-        dialog.setHeaderText("Seleccione el nuevo estado");
+
+        Text headerText = new Text("Seleccione el nuevo estado");
+        headerText.setFill(Color.web("#9582ff"));
+        headerText.setFont(Font.font("System", 16));
+
+        VBox header = new VBox(headerText); // Crear el VBox con el texto
+        header.setPadding(new Insets(20, 20, 10, 20));
+        dialog.getDialogPane().setHeader(header);
 
         // Configurar botones
         ButtonType confirmarButtonType = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(confirmarButtonType, ButtonType.CANCEL);
 
-        // Crear ComboBox con estados disponibles
+        // Crear y estilizar ComboBox
         ComboBox<EstadoProducto> comboEstados = new ComboBox<>();
         comboEstados.getItems().addAll(EstadoProducto.values());
         comboEstados.setValue(estadoActual);
+        comboEstados.setStyle("-fx-background-color: #e1dcfc; " +
+                "-fx-text-fill: #6228f5; " +
+                "-fx-border-color: #a898ff; " +
+                "-fx-border-width: 0 0 2 0;");
 
-        dialog.getDialogPane().setContent(comboEstados);
+        // Contenedor principal
+        VBox contenedor = new VBox(10);
+        contenedor.setPadding(new Insets(20));
+        contenedor.setStyle("-fx-background-color: #f7f1f7;");
+        contenedor.getChildren().add(comboEstados);
+
+        // Estilizar botones
+        DialogPane dialogPane = dialog.getDialogPane();
+        dialogPane.setContent(contenedor);
+        dialogPane.setStyle("-fx-background-color: #f7f1f7;");
+
+        Node confirmarButton = dialogPane.lookupButton(confirmarButtonType);
+        confirmarButton.setStyle("-fx-background-color: #9582ff; -fx-text-fill: white;");
+
+        Node cancelarButton = dialogPane.lookupButton(ButtonType.CANCEL);
+        cancelarButton.setStyle("-fx-background-color: #e1dcfc; -fx-text-fill: #9582ff;");
+
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == confirmarButtonType) {
                 return comboEstados.getValue();
@@ -393,17 +420,44 @@ public class VendedorController {
     private Dialog<Vendedor> crearDialogoSeleccionContacto() {
         Dialog<Vendedor> dialog = new Dialog<>();
         dialog.setTitle("Agregar Contacto");
-        dialog.setHeaderText("Seleccione un vendedor para agregar a sus contactos");
+
+        // Header personalizado
+        Text headerText = new Text("Seleccione un vendedor para agregar a sus contactos");
+        headerText.setFill(Color.web("#9582ff"));
+        headerText.setFont(Font.font("System", 16));
+        VBox header = new VBox(headerText);
+        header.setPadding(new Insets(20, 20, 10, 20));
+        dialog.getDialogPane().setHeader(header);
 
         // Configurar botones
         ButtonType agregarButtonType = new ButtonType("Agregar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(agregarButtonType, ButtonType.CANCEL);
 
-        // Crear ListView con vendedores sugeridos
+        // Crear y estilizar ListView
         ListView<Vendedor> listView = new ListView<>();
         listView.setItems(FXCollections.observableArrayList(obtenerVendedoresSugeridos()));
+        listView.setStyle("-fx-background-color: #e1dcfc; " +
+                "-fx-control-inner-background: #f7f1f7; " +
+                "-fx-border-color: #a898ff; " +
+                "-fx-border-width: 1px;");
 
-        dialog.getDialogPane().setContent(listView);
+        // Contenedor principal
+        VBox contenedor = new VBox(10);
+        contenedor.setPadding(new Insets(20));
+        contenedor.setStyle("-fx-background-color: #f7f1f7;");
+        contenedor.getChildren().add(listView);
+
+        // Estilizar botones y diálogo
+        DialogPane dialogPane = dialog.getDialogPane();
+        dialogPane.setContent(contenedor);
+        dialogPane.setStyle("-fx-background-color: #f7f1f7;");
+
+        Node agregarButton = dialogPane.lookupButton(agregarButtonType);
+        agregarButton.setStyle("-fx-background-color: #9582ff; -fx-text-fill: white;");
+
+        Node cancelarButton = dialogPane.lookupButton(ButtonType.CANCEL);
+        cancelarButton.setStyle("-fx-background-color: #e1dcfc; -fx-text-fill: #9582ff;");
+
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == agregarButtonType) {
                 return listView.getSelectionModel().getSelectedItem();
@@ -417,32 +471,58 @@ public class VendedorController {
     private Dialog<String> crearDialogoComentario() {
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Agregar Comentario");
-        dialog.setHeaderText("Escriba su comentario");
+
+        // Header personalizado
+        Text headerText = new Text("Escriba su comentario");
+        headerText.setFill(Color.web("#9582ff"));
+        headerText.setFont(Font.font("System", 16));
+        VBox header = new VBox(headerText);
+        header.setPadding(new Insets(20, 20, 10, 20));
+        dialog.getDialogPane().setHeader(header);
 
         // Configurar botones
         ButtonType comentarButtonType = new ButtonType("Comentar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(comentarButtonType, ButtonType.CANCEL);
 
-        // Crear área de texto
+        // Crear y estilizar TextArea
         TextArea textArea = new TextArea();
         textArea.setPromptText("Escriba su comentario aquí...");
         textArea.setPrefRowCount(3);
         textArea.setWrapText(true);
+        textArea.setStyle("-fx-background-color: #e1dcfc; " +
+                "-fx-control-inner-background: #f7f1f7; " +
+                "-fx-border-color: #a898ff; " +
+                "-fx-border-width: 2px; " +
+                "-fx-text-fill: #6228f5;");
 
-        dialog.getDialogPane().setContent(textArea);
+        // Contenedor principal
+        VBox contenedor = new VBox(10);
+        contenedor.setPadding(new Insets(20));
+        contenedor.setStyle("-fx-background-color: #f7f1f7;");
+        contenedor.getChildren().add(textArea);
+
+        // Estilizar botones y diálogo
+        DialogPane dialogPane = dialog.getDialogPane();
+        dialogPane.setContent(contenedor);
+        dialogPane.setStyle("-fx-background-color: #f7f1f7;");
+
+        Node comentarButton = dialogPane.lookupButton(comentarButtonType);
+        comentarButton.setStyle("-fx-background-color: #9582ff; -fx-text-fill: white;");
+        comentarButton.setDisable(true);
+
+        Node cancelarButton = dialogPane.lookupButton(ButtonType.CANCEL);
+        cancelarButton.setStyle("-fx-background-color: #e1dcfc; -fx-text-fill: #9582ff;");
+
+        textArea.textProperty().addListener((observable, oldValue, newValue) -> {
+            comentarButton.setDisable(newValue.trim().isEmpty());
+        });
+
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == comentarButtonType) {
                 String comentario = textArea.getText().trim();
                 return comentario.isEmpty() ? null : comentario;
             }
             return null;
-        });
-
-        // Deshabilitar botón de comentar si el texto está vacío
-        Node comentarButton = dialog.getDialogPane().lookupButton(comentarButtonType);
-        comentarButton.setDisable(true);
-        textArea.textProperty().addListener((observable, oldValue, newValue) -> {
-            comentarButton.setDisable(newValue.trim().isEmpty());
         });
 
         return dialog;
@@ -473,7 +553,7 @@ public class VendedorController {
         alert.showAndWait();
     }
 
-    // Métodos de utilidad adicionales
+
     @FXML
     private void handleVerDetallesProducto() {
         Producto productoSeleccionado = tableProductos.getSelectionModel().getSelectedItem();
@@ -490,7 +570,7 @@ public class VendedorController {
         VBox contenido = new VBox(10);
         contenido.setPadding(new Insets(20));
 
-        // Información básica
+
         contenido.getChildren().addAll(
                 new Label("Categoría: " + producto.getCategoria()),
                 new Label("Precio: $" + String.format("%.2f", producto.getPrecio())),

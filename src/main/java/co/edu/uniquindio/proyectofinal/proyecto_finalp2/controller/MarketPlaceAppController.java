@@ -78,7 +78,7 @@ public class MarketPlaceAppController {
 
             tabPane.getTabs().add(tab);
 
-            // Cargar pestañas de contactos si es necesario
+
             cargarPestanasContactos(vendedor);
 
         } catch (IOException e) {
@@ -87,7 +87,7 @@ public class MarketPlaceAppController {
     }
 
     private void cargarPestanasContactos(Vendedor vendedor) {
-        // Cargar una pestaña para cada contacto del vendedor
+
         vendedor.getContactos().forEach(contacto -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(MarketPlaceConstantes.VISTA_VENDEDOR));
@@ -106,7 +106,7 @@ public class MarketPlaceAppController {
     }
 
     private void actualizarMenus() {
-        // Actualizar menús según el tipo de usuario
+
         if (usuarioActual instanceof Administrador) {
             habilitarMenusAdministrador();
         } else {
@@ -188,10 +188,10 @@ public class MarketPlaceAppController {
     }
 
     private void habilitarMenusAdministrador() {
-        // Configurar menús específicos para administrador
+
     }
 
     private void habilitarMenusVendedor() {
-        // Configurar menús específicos para vendedor
+
     }
 }

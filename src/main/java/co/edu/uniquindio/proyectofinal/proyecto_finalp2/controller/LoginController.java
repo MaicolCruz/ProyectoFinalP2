@@ -19,7 +19,7 @@ public class LoginController {
 
     @FXML
     public void initialize() {
-        // Configurar validaciones en tiempo real
+
         txtUsuario.textProperty().addListener((observable, oldValue, newValue) -> {
             validarCampos();
         });

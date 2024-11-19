@@ -119,7 +119,7 @@ public class AdministradorController {
         tableVendedores.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldSelection, newSelection) -> {
                     boolean haySeleccion = newSelection != null;
-                    // Aquí puedes habilitar/deshabilitar botones según si hay selección
+
                 }
         );
     }
