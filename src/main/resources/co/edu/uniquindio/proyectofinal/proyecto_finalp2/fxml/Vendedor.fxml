@@ -1,95 +1,220 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
-<VBox spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller.VendedorController"
-      styleClass="vendedor-container">
+
+<VBox spacing="10" style="-fx-background-color: #C8A9DB;" styleClass="vendedor-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller.VendedorController">
 
     <padding>
-        <Insets top="10" right="10" bottom="10" left="10"/>
+        <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
-
-    <TabPane>
-        <!-- Pestaña del Muro -->
-        <Tab text="Mi Muro" closable="false">
-            <VBox spacing="10" styleClass="section-container">
-                <ListView fx:id="listViewMuro" VBox.vgrow="ALWAYS" styleClass="muro-list"/>
-
-                <HBox spacing="10" styleClass="post-section">
-                    <TextField fx:id="txtMensaje" promptText="¿Qué quieres compartir?"
-                               HBox.hgrow="ALWAYS"/>
-                    <Button text="Publicar" onAction="#handlePublicarMensaje"
-                            styleClass="post-button"/>
-                </HBox>
-            </VBox>
-        </Tab>
-
-        <!-- Pestaña de Productos -->
-        <Tab text="Mis Productos" closable="false">
-            <VBox spacing="10" styleClass="section-container">
-                <HBox spacing="10" styleClass="toolbar">
-                    <Button text="Nuevo Producto" onAction="#handleNuevoProducto"
-                            styleClass="action-button"/>
-                    <Button text="Editar" onAction="#handleEditarProducto"
-                            styleClass="edit-button"/>
-                    <Button text="Eliminar" onAction="#handleEliminarProducto"
-                            styleClass="delete-button"/>
-                    <Button text="Cambiar Estado" onAction="#handleCambiarEstado"
-                            styleClass="state-button"/>
-                </HBox>
-
-                <TableView fx:id="tableProductos" VBox.vgrow="ALWAYS"
-                           styleClass="data-table">
-                    <columns>
-                        <TableColumn fx:id="colNombreProducto" text="Nombre"/>
-                        <TableColumn fx:id="colCategoria" text="Categoría"/>
-                        <TableColumn fx:id="colPrecio" text="Precio"/>
-                        <TableColumn fx:id="colEstado" text="Estado"/>
-                        <TableColumn fx:id="colFecha" text="Fecha"/>
-                    </columns>
-                </TableView>
-            </VBox>
-        </Tab>
-
-        <!-- Pestaña de Red de Contactos -->
-        <Tab text="Red de Contactos" closable="false">
-            <VBox spacing="10" styleClass="section-container">
-                <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS">
-                    <!-- Panel de Contactos -->
-                    <VBox spacing="10" styleClass="contacts-panel">
-                        <Label text="Mis Contactos" styleClass="section-title"/>
-                        <ListView fx:id="listViewContactos" VBox.vgrow="ALWAYS"/>
-                        <Button text="Agregar Contacto" onAction="#handleAgregarContacto"
-                                styleClass="action-button"/>
-                    </VBox>
-
-                    <!-- Panel de Productos de la Red -->
-                    <VBox spacing="10" styleClass="network-panel">
-                        <Label text="Productos de mi Red" styleClass="section-title"/>
-                        <TableView fx:id="tableProductosRed" VBox.vgrow="ALWAYS">
-                            <columns>
-                                <TableColumn fx:id="colRedVendedor" text="Vendedor"/>
-                                <TableColumn fx:id="colRedNombre" text="Nombre"/>
-                                <TableColumn fx:id="colRedPrecio" text="Precio"/>
-                                <TableColumn fx:id="colRedEstado" text="Estado"/>
-                                <TableColumn fx:id="colRedFecha" text="Fecha"/>
-                            </columns>
-                        </TableView>
-                        <HBox spacing="10" styleClass="interaction-buttons">
-                            <Button text="Me gusta" onAction="#handleMeGusta"
-                                    styleClass="like-button"/>
-                            <Button text="Comentar" onAction="#handleComentar"
-                                    styleClass="comment-button"/>
-                        </HBox>
-                    </VBox>
-                </SplitPane>
-            </VBox>
-        </Tab>
-    </TabPane>
+   <children>
+   
+       <TabPane>
+      <tabs>
+              <!-- Pestaña del Muro -->
+              <Tab closable="false" text="Mi Muro">
+                 <content>
+                     <VBox spacing="10" style="-fx-background-color: #C8A9DB;" styleClass="section-container">
+                        <children>
+                            <ListView fx:id="listViewMuro" style="-fx-background-color: #C8A9DB;" styleClass="muro-list" VBox.vgrow="ALWAYS" />
+            
+                            <HBox prefHeight="64.0" prefWidth="660.0" spacing="10" style="-fx-background-color: #C8A9DB;" styleClass="post-section">
+               <children>
+                                   <TextField fx:id="txtMensaje" prefHeight="51.0" prefWidth="580.0" promptText="¿Qué quieres compartir?" HBox.hgrow="ALWAYS" />
+                                   <Button onAction="#handlePublicarMensaje" prefHeight="50.0" prefWidth="70.0" styleClass="post-button" text="Publicar">
+                                       <style>
+                            -fx-background-color: #9582ff;
+                            -fx-text-fill: white;
+                        </style>
+                                   </Button>
+               </children>
+                            </HBox>
+                        </children>
+                     </VBox>
+                 </content>
+              </Tab>
+      
+              <!-- Pestaña de Productos -->
+              <Tab closable="false" text="Mis Productos">
+         <content>
+                     <VBox spacing="10" styleClass="section-container">
+                        <children>
+                            <HBox spacing="10" styleClass="toolbar">
+                               <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="659.0">
+                                 <children>
+                                         <Button layoutX="40.0" layoutY="18.0" onAction="#handleNuevoProducto" prefHeight="80.0" prefWidth="201.0" styleClass="action-button" text="Nuevo Producto">
+                                             <style>
+                            -fx-background-color: #9582ff;
+                            -fx-text-fill: white;
+                        </style>
+                                       <graphic>
+                                          <ImageView fitHeight="55.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../images/marketplace.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                         </Button>
+                                         <Button layoutX="40.0" layoutY="104.0" onAction="#handleEditarProducto" prefHeight="82.0" prefWidth="201.0" styleClass="edit-button" text="Editar">
+                                             <style>
+                            -fx-background-color: #9582ff;
+                            -fx-text-fill: white;
+                        </style>
+                                       <graphic>
+                                          <ImageView fitHeight="61.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../images/actualizar-datos.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                         </Button>
+                                         <Button layoutX="444.0" layoutY="16.0" onAction="#handleEliminarProducto" prefHeight="84.0" prefWidth="180.0" styleClass="delete-button" text="Eliminar">
+                                             <style>
+                            -fx-background-color: #9582ff;
+                            -fx-text-fill: white;
+                        </style>
+                                       <graphic>
+                                          <ImageView fitHeight="74.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../images/eliminar.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                         </Button>
+                                         <Button layoutX="444.0" layoutY="106.0" onAction="#handleCambiarEstado" prefHeight="84.0" prefWidth="182.0" styleClass="state-button" text="Cambiar Estado">
+                                             <style>
+                            -fx-background-color: #9582ff;
+                            -fx-text-fill: white;
+                        </style>
+                                       <graphic>
+                                          <ImageView fitHeight="55.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../images/apellidos.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                         </Button>
+                                    <ImageView fitHeight="103.0" fitWidth="132.0" layoutX="295.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../images/marketing.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                               </children>
+                            </HBox>
+            
+                            <TableView fx:id="tableProductos" styleClass="data-table" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="colNombreProducto" text="Nombre" />
+                                    <TableColumn fx:id="colCategoria" text="Categoría" />
+                                    <TableColumn fx:id="colPrecio" text="Precio" />
+                                    <TableColumn fx:id="colEstado" text="Estado" />
+                                    <TableColumn fx:id="colFecha" text="Fecha" />
+                                </columns>
+                            </TableView>
+                        </children>
+                     </VBox>
+         </content>
+              </Tab>
+      
+              <!-- Pestaña de Red de Contactos -->
+              <Tab closable="false" text="Red de Contactos">
+         <content>
+                     <VBox spacing="10" styleClass="section-container">
+                        <children>
+                            <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS">
+                               <items>
+                                   <!-- Panel de Contactos -->
+                                   <VBox prefHeight="601.0" prefWidth="175.0" spacing="10" style="-fx-background-color: #C8A9DB;" styleClass="contacts-panel">
+                                      <children>
+                                          <Label styleClass="section-title" text="Mis Contactos" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold Italic" size="25.0" />
+                                       </font>
+                                    </Label>
+                                          <ListView fx:id="listViewContactos" VBox.vgrow="ALWAYS" />
+                                          <Button onAction="#handleAgregarContacto" prefHeight="70.0" prefWidth="178.0" styleClass="action-button" text="Agregar Contacto">
+                                              <style>
+                                -fx-background-color: #9582ff;
+                                -fx-text-fill: white;
+                            </style>
+                                       <graphic>
+                                          <ImageView fitHeight="113.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../images/usuario.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                          </Button>
+                                      </children>
+                                   </VBox>
+               
+                                   <!-- Panel de Productos de la Red -->
+                                   <VBox spacing="10" style="-fx-background-color: #C8A9DB;" styleClass="network-panel">
+                  <children>
+                                          <Label prefHeight="38.0" prefWidth="368.0" styleClass="section-title" text="            Productos de mi Red" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold Italic" size="26.0" />
+                                       </font>
+                                    </Label>
+                                          <TableView fx:id="tableProductosRed" VBox.vgrow="ALWAYS">
+                                              <columns>
+                                                  <TableColumn fx:id="colRedVendedor" text="Vendedor" />
+                                                  <TableColumn fx:id="colRedNombre" text="Nombre" />
+                                                  <TableColumn fx:id="colRedPrecio" text="Precio" />
+                                                  <TableColumn fx:id="colRedEstado" text="Estado" />
+                                                  <TableColumn fx:id="colRedFecha" text="Fecha" />
+                                              </columns>
+                                          </TableView>
+                                          <HBox spacing="10" styleClass="interaction-buttons">
+                                             <children>
+                                                 <Button onAction="#handleMeGusta" prefHeight="55.0" prefWidth="116.0" styleClass="like-button" text="Me gusta">
+                                                     <style>
+                                    -fx-background-color: #9582ff;
+                                    -fx-text-fill: white;
+                                </style>
+                                             <graphic>
+                                                <ImageView fitHeight="130.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../../images/LoginImage.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                                 </Button>
+                                                 <Button onAction="#handleComentar" prefHeight="54.0" prefWidth="128.0" styleClass="comment-button" text="Comentar">
+                                                     <style>
+                                    -fx-background-color: #9582ff;
+                                    -fx-text-fill: white;
+                                </style>
+                                             <graphic>
+                                                <ImageView fitHeight="27.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../../images/layout-fluid.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                                 </Button>
+                                             </children>
+                                          </HBox>
+                  </children>
+                                   </VBox>
+                               </items>
+                            </SplitPane>
+                        </children>
+                     </VBox>
+         </content>
+              </Tab>
+      </tabs>
+       </TabPane>
+   </children>
 </VBox>

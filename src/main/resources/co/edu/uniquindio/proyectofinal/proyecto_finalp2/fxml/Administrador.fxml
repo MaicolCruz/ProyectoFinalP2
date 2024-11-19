@@ -1,66 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
-<VBox spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller.AdministradorController"
-      styleClass="admin-container">
+
+<VBox prefHeight="522.0" prefWidth="639.0" spacing="10" style="-fx-background-color: #C8A9DB;" styleClass="admin-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller.AdministradorController">
 
     <padding>
-        <Insets top="10" right="10" bottom="10" left="10"/>
+        <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
-
-    <TabPane>
-        <Tab text="Gestión de Vendedores" closable="false">
-            <VBox spacing="10" styleClass="section-container">
-                <HBox spacing="10" styleClass="toolbar">
-                    <Button text="Nuevo Vendedor" onAction="#handleNuevoVendedor"
-                            styleClass="action-button"/>
-                    <Button text="Editar" onAction="#handleEditarVendedor"
-                            styleClass="edit-button"/>
-                    <Button text="Eliminar" onAction="#handleEliminarVendedor"
-                            styleClass="delete-button"/>
-                </HBox>
-
-                <TableView fx:id="tableVendedores" VBox.vgrow="ALWAYS"
-                           styleClass="data-table">
-                    <columns>
-                        <TableColumn fx:id="colCedula" text="Cédula"/>
-                        <TableColumn fx:id="colNombre" text="Nombre"/>
-                        <TableColumn fx:id="colApellidos" text="Apellidos"/>
-                        <TableColumn fx:id="colUsuario" text="Usuario"/>
-                    </columns>
-                </TableView>
-            </VBox>
-        </Tab>
-
-        <Tab text="Estadísticas" closable="false">
-            <VBox spacing="10" styleClass="section-container">
-                <GridPane styleClass="stats-grid" hgap="10" vgap="10">
-                    <Label text="Total Vendedores:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <Label fx:id="lblTotalVendedores" styleClass="stat-value"
-                           GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-
-                    <Label text="Total Productos:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                    <Label fx:id="lblTotalProductos" styleClass="stat-value"
-                           GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
-                    <Label text="Productos Vendidos:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                    <Label fx:id="lblProductosVendidos" styleClass="stat-value"
-                           GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                </GridPane>
-
-                <HBox spacing="10" alignment="CENTER_LEFT" styleClass="export-section">
-                    <ComboBox fx:id="comboTipoEstadistica" promptText="Seleccione tipo de reporte"/>
-                    <Button text="Generar Reporte" onAction="#handleGenerarReporte"
-                            styleClass="report-button"/>
-                </HBox>
-            </VBox>
-        </Tab>
-    </TabPane>
+   <children>
+   
+       <TabPane style="-fx-background-color: #C8A9DB;">
+      <tabs>
+              <Tab closable="false" text="Gestión de Vendedores">
+                 <content>
+                     <VBox spacing="10" styleClass="section-container">
+                        <children>
+                            <HBox prefHeight="101.0" prefWidth="619.0" spacing="10" styleClass="toolbar">
+                               <children>
+                              <AnchorPane prefHeight="62.0" prefWidth="618.0">
+                                 <children>
+                                         <Button layoutX="30.0" layoutY="12.0" onAction="#handleNuevoVendedor" prefHeight="50.0" prefWidth="168.0" text="Nuevo Vendedor">
+                                             <style>
+                            -fx-background-color: #9582ff;
+                            -fx-text-fill: white;
+                        </style>
+                                       <graphic>
+                                          <ImageView fitHeight="43.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../images/nombre.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                         </Button>
+                                         <Button layoutX="224.0" layoutY="11.0" onAction="#handleEditarVendedor" prefHeight="50.0" prefWidth="170.0" styleClass="edit-button" text="Editar">
+                                             <style>
+                            -fx-background-color: #9582ff;
+                            -fx-text-fill: white;
+                        </style>
+                                         </Button>
+                                         <Button layoutX="410.0" layoutY="10.0" onAction="#handleEliminarVendedor" prefHeight="52.0" prefWidth="170.0" styleClass="delete-button" text="Eliminar">
+                                             <style>
+                            -fx-background-color: #9582ff;
+                            -fx-text-fill: white;
+                        </style>
+                                       <graphic>
+                                          <ImageView fitHeight="42.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../images/eliminar.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                         </Button>
+                                    <ImageView fitHeight="41.0" fitWidth="60.0" layoutX="231.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../images/apellidos.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                               </children>
+                            </HBox>
+            
+                            <TableView fx:id="tableVendedores" prefHeight="413.0" prefWidth="619.0" styleClass="data-table" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="colCedula" prefWidth="167.0" text="Cédula" />
+                                    <TableColumn fx:id="colNombre" prefWidth="149.0" text="Nombre" />
+                                    <TableColumn fx:id="colApellidos" prefWidth="152.0" text="Apellidos" />
+                                    <TableColumn fx:id="colUsuario" prefWidth="150.0" text="Usuario" />
+                                </columns>
+                            </TableView>
+                        </children>
+                     </VBox>
+                 </content>
+              </Tab>
+      
+              <Tab closable="false" text="Estadísticas">
+         <content>
+                     <VBox spacing="10" styleClass="section-container">
+                        <children>
+                        <AnchorPane prefHeight="405.0" prefWidth="619.0">
+                           <children>
+                                  <GridPane hgap="10" layoutX="188.0" layoutY="41.0" styleClass="stats-grid" vgap="10">
+                                     <children>
+                                         <Label prefHeight="26.0" prefWidth="112.0" text="Total Vendedores:" />
+                                         <Label fx:id="lblTotalVendedores" styleClass="stat-value" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                     
+                                         <Label text="Total Productos:" GridPane.rowIndex="1" />
+                                         <Label fx:id="lblTotalProductos" styleClass="stat-value" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     
+                                         <Label prefHeight="33.0" prefWidth="145.0" text="Productos Vendidos:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                         <Label fx:id="lblProductosVendidos" styleClass="stat-value" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                     </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints maxWidth="145.0" minWidth="145.0" prefWidth="145.0" />
+                                    <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints />
+                                    <RowConstraints maxHeight="27.0" minHeight="25.0" prefHeight="27.0" />
+                                    <RowConstraints maxHeight="28.0" minHeight="26.0" prefHeight="26.0" />
+                                 </rowConstraints>
+                                  </GridPane>
+                  
+                                  <HBox alignment="CENTER_LEFT" spacing="10" styleClass="export-section" />
+                                   <ComboBox fx:id="comboTipoEstadistica" layoutX="180.0" layoutY="173.0" promptText="Seleccione tipo de reporte" />
+                                   <Button layoutX="191.0" layoutY="224.0" onAction="#handleGenerarReporte" prefHeight="89.0" prefWidth="193.0" styleClass="report-button" text="Generar Reporte">
+                                       <style>
+                            -fx-background-color: #9582ff;
+                            -fx-text-fill: white;
+                        </style>
+                                 <graphic>
+                                    <ImageView fitHeight="64.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../images/chart-histogram.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                   </Button>
+                           </children>
+                        </AnchorPane>
+                        </children>
+                     </VBox>
+         </content>
+              </Tab>
+      
+              <Tab closable="false" text="Red de Contactos">
+         <content>
+                     <VBox spacing="10" styleClass="section-container">
+                        <children>
+                            <SplitPane VBox.vgrow="ALWAYS">
+                               <items>
+                                   <VBox spacing="10" styleClass="network-panel">
+                                      <children>
+                                          <Label prefHeight="61.0" prefWidth="615.0" style="-fx-background-color: #C8A9DB;" styleClass="section-title" text="                             PRODUCTOS DE MIS VENDEDORES" textAlignment="RIGHT" textFill="#a532bf">
+                                       <font>
+                                          <Font name="Bodoni MT Black Italic" size="20.0" />
+                                       </font>
+                                    </Label>
+                                          <TableView fx:id="tableProductosRed" VBox.vgrow="ALWAYS">
+                                              <columns>
+                                                  <TableColumn fx:id="colRedVendedor" prefWidth="136.0" text="Vendedor" />
+                                                  <TableColumn fx:id="colRedNombre" prefWidth="149.0" text="Nombre" />
+                                                  <TableColumn fx:id="colRedPrecio" prefWidth="146.0" text="Precio" />
+                                                  <TableColumn fx:id="colRedEstado" prefWidth="179.0" text="Estado" />
+                                              </columns>
+                                          </TableView>
+                                      </children>
+                                   </VBox>
+                               </items>
+                            </SplitPane>
+                        </children>
+                     </VBox>
+         </content>
+              </Tab>
+      </tabs>
+       </TabPane>
+   </children>
 </VBox>

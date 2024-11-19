@@ -3,16 +3,22 @@ package co.edu.uniquindio.proyectofinal.proyecto_finalp2.controller;
 import co.edu.uniquindio.proyectofinal.proyecto_finalp2.model.*;
 import co.edu.uniquindio.proyectofinal.proyecto_finalp2.service.EstadoProducto;
 import co.edu.uniquindio.proyectofinal.proyecto_finalp2.service.interfaces.IAdministradorCrud;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
+import javafx.util.Duration;
 import java.io.File;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class AdministradorController {
     @FXML private TableView<Vendedor> tableVendedores;
@@ -20,17 +26,23 @@ public class AdministradorController {
     @FXML private TableColumn<Vendedor, String> colNombre;
     @FXML private TableColumn<Vendedor, String> colApellidos;
     @FXML private TableColumn<Vendedor, String> colUsuario;
-
+    @FXML private TableColumn<Producto, String> colRedVendedor;
+    @FXML private TableColumn<Producto, String> colRedNombre = new TableColumn<>();
+    @FXML private TableColumn<Producto, Double> colRedPrecio;
+    @FXML private TableColumn<Producto, EstadoProducto> colRedEstado;
+    @FXML private TableColumn<Producto, EstadoProducto> colRedFecha;
     @FXML private Label lblTotalVendedores;
     @FXML private Label lblTotalProductos;
     @FXML private Label lblProductosVendidos;
-
+    @FXML private TableView<Producto> tableProductosRed;
     @FXML private ComboBox<String> comboTipoEstadistica;
     private IAdministradorCrud adminService;
 
     public void inicializar(IAdministradorCrud adminService) {
         this.adminService = adminService;
         configurarTabla();
+        actualizarTablaProductos();
+        configurarTablas();
         configurarComboBox();
         cargarDatos();
         actualizarEstadisticas();
@@ -43,18 +55,63 @@ public class AdministradorController {
         colApellidos.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
         colUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
 
-        // Agregar tooltip a las celdas
-        tableVendedores.setRowFactory(tv -> {
-            TableRow<Vendedor> row = new TableRow<>();
-            row.setTooltip(new Tooltip("Doble clic para ver detalles"));
-            return row;
-        });
 
-        // Configurar doble clic en las filas
-        tableVendedores.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2 && tableVendedores.getSelectionModel().getSelectedItem() != null) {
-                mostrarDetallesVendedor(tableVendedores.getSelectionModel().getSelectedItem());
-            }
+        tableVendedores.setRowFactory(tv -> {
+            TableRow<Vendedor> row = new TableRow<>() {
+                private Tooltip tooltip = new Tooltip();
+
+                @Override
+                protected void updateItem(Vendedor vendedor, boolean empty) {
+                    super.updateItem(vendedor, empty);
+
+                    if (empty || vendedor == null) {
+                        setStyle("");
+                        setTooltip(null);
+                    } else {
+                        // Estilo al pasar el mouse
+                        setOnMouseEntered(event ->
+                                setStyle("-fx-background-color: #e1dcfc;"));
+
+                        // Crear contenido del tooltip con los productos
+                        StringBuilder tooltipText = new StringBuilder();
+                        tooltipText.append("Vendedor: ").append(vendedor.getNombre())
+                                .append(" ").append(vendedor.getApellidos())
+                                .append("\nCédula: ").append(vendedor.getCedula())
+                                .append("\n\nProductos:");
+
+                        if (vendedor.getProductos().isEmpty()) {
+                            tooltipText.append("\nNo tiene productos registrados");
+                        } else {
+                            vendedor.getProductos().forEach(producto ->
+                                    tooltipText.append("\n• ").append(producto.getNombre())
+                                            .append(" - $").append(String.format("%,.0f", producto.getPrecio()))
+                                            .append(" - ").append(producto.getEstado())
+                            );
+                        }
+
+                        tooltip.setText(tooltipText.toString());
+                        // Estilizar el tooltip
+                        tooltip.setStyle("-fx-background-color: #f7f1f7; " +
+                                "-fx-text-fill: #6228f5; " +
+                                "-fx-font-size: 12px; " +
+                                "-fx-border-color: #9582ff; " +
+                                "-fx-border-width: 1px; " +
+                                "-fx-padding: 10px;");
+
+                        setTooltip(tooltip);
+                    }
+                }
+            };
+
+            // Manejar el doble clic en la fila
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getClickCount() == 2) {
+                    // Mostrar detalles del vendedor
+                    mostrarDetallesVendedor(row.getItem());
+                }
+            });
+
+            return row;
         });
     }
 
@@ -65,6 +122,22 @@ public class AdministradorController {
                     // Aquí puedes habilitar/deshabilitar botones según si hay selección
                 }
         );
+    }
+
+    private void configurarTablas() {
+        // Configuración de columnas para tableProductosRed
+// Configuración de columnas para tableProductosRed
+        colRedVendedor.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getVendedor().getNombre()));
+        colRedNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colRedPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        colRedEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+
+
+        // Agregar estilo a la tabla
+        tableProductosRed.setStyle("-fx-background-color: white; -fx-border-color: #9582ff;");
+
+
     }
 
     private void configurarComboBox() {
@@ -80,6 +153,16 @@ public class AdministradorController {
         tableVendedores.getItems().clear();
         tableVendedores.setItems(FXCollections.observableArrayList(adminService.listarVendedores()));
         tableVendedores.refresh();
+
+        // Cargar productos de todos los vendedores
+        List<Producto> todosLosProductos = adminService.listarVendedores().stream()
+                .flatMap(vendedor -> vendedor.getProductos().stream())
+                .collect(Collectors.toList());
+
+        tableProductosRed.getItems().clear();
+        tableProductosRed.setItems(FXCollections.observableArrayList(todosLosProductos));
+        tableProductosRed.refresh();
+        actualizarTablaProductos();
     }
 
     private void actualizarEstadisticas() {
@@ -249,4 +332,15 @@ public class AdministradorController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+    private void actualizarTablaProductos() {
+        List<Producto> todosLosProductos = adminService.listarVendedores().stream()
+                .flatMap(vendedor -> vendedor.getProductos().stream())
+                .collect(Collectors.toList());
+
+        tableProductosRed.getItems().clear();
+        tableProductosRed.setItems(FXCollections.observableArrayList(todosLosProductos));
+        tableProductosRed.refresh();
+    }
+
 }
